@@ -13,3 +13,9 @@ the interface is implicit inside a object type; **interface** is a collection of
 operations that you can perform on a object of that type;
 ex.: std::string name;
 we are able to do whatever the library says that we can do with string, like name.length();
+
+OOP
+Class -> It's a model or a template;
+Object -> It's a instance or a example of that Class;
+Classes have attributes (characteristics) and behaviour;
+
