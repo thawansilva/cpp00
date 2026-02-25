@@ -2,7 +2,7 @@ NAME := megaphone
 
 # Source files and Objects
 SRC := megaphone.cpp
-OBJS := $(SRC:%.c=%.o)
+OBJS := $(SRC:%.cpp=%.o)
 
 # Flags
 CC := c++
@@ -15,7 +15,7 @@ $(NAME): $(OBJS)
 	$(CC) $(OBJS) -o $(NAME)
 	@touch $@
 
-%.o: %.c
+%.o: %.cpp
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
 clean:
@@ -23,6 +23,7 @@ clean:
 
 fclean: clean
 	rm $(NAME)
+
 re: fclean all
 
 .PHONY: all clean fclean re
