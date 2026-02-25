@@ -1,8 +1,8 @@
 NAME := phonebook
 
 # Source files and Objects
-SRC := main.cpp phonebook.class.cpp contact.class.cpp
-OBJS := $(SRC:%.c=%.o)
+SRC := main.cpp Phonebook.cpp Contact.cpp
+OBJS := $(SRC:%.cpp=%.o)
 
 # Flags
 C++ := c++
@@ -15,7 +15,7 @@ $(NAME): $(OBJS)
 	$(C++) $(OBJS) -o $(NAME)
 	@touch $@
 
-%.o: %.c
+%.o: %.cpp
 	$(C++) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
 clean:
