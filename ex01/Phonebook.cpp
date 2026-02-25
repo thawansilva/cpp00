@@ -36,15 +36,20 @@ void Phonebook::showContacts(void)
 	std::cout << "|" << std::setw(10) << "first Name";
 	std::cout << "|" << std::setw(10) << "last Name";
 	std::cout << "|" << std::setw(10) << "nickname" << "|" << std::endl;
-	std::cout << "|" << std::setfill('-') << std::setw(44) << "|" << std::endl;
+	std::cout << "|" << std::setfill('-') << std::setw(11);
+	std::cout << "|" << std::setfill('-') << std::setw(11);
+	std::cout << "|" << std::setfill('-') << std::setw(11);
+	std::cout << "|" << std::setw(11) << "|" << std::endl;
+	std::cout << std::setfill(' ');
 
 	int i = -1;
-	while (++i <= this->count)
+	while (++i < this->count)
 	{
 		Contact contact = this->contacts[i];
 		std::cout << "|" << std::setw(10) << i << "|";
-		std::cout << "|" << std::setw(10) << contact.showRowInfo() << "|";
+		contact.showRowInfo();
 		std::cout << "|";
 		std::cout << std::setfill('-') << std::setw(44) << "|" << std::endl;
+		std::cout << std::setfill(' ');
 	}
 }

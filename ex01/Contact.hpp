@@ -3,6 +3,7 @@
 
 #include <string>
 #include <iostream>
+#include <iomanip>
 
 class Contact
 {
@@ -23,6 +24,7 @@ class Contact
 		void setDarkestSecret(const std::string &darkestSecret);
 
 		void showInfo(void);
+		void showRowInfo(void);
 		std::string getFirstName(void);
 		std::string getLastName(void);
 		std::string getNickname(void);

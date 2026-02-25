@@ -2,7 +2,6 @@
 
 Contact::Contact(void)
 {
-	std::cout << "Contact created" << std::endl;
 }
 
 void Contact::setFirstName(const std::string &firstName)
@@ -53,6 +52,13 @@ std::string Contact::getPhoneNumber()
 std::string Contact::getDarkestSecret()
 {
 	return this->darkestSecret;
+}
+
+void Contact::showRowInfo(void)
+{
+	std::cout << std::setw(10) << this->getFirstName() << "|";
+	std::cout << std::setw(10) << this->getLastName() << "|";
+	std::cout << std::setw(10) << this->getNickname() << "|" << std::endl;
 }
 
 void Contact::showInfo()
