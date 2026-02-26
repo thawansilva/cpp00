@@ -1,5 +1,12 @@
 #include "Contact.hpp"
 
+std::string truncate(std::string str)
+{
+	if (str.length() > 10)
+		return str.substr(0,9) + ".";
+	return str;
+}
+
 Contact::Contact(void)
 {
 }
@@ -56,9 +63,9 @@ std::string Contact::getDarkestSecret()
 
 void Contact::showRowInfo(void)
 {
-	std::cout << std::setw(10) << this->getFirstName() << "|";
-	std::cout << std::setw(10) << this->getLastName() << "|";
-	std::cout << std::setw(10) << this->getNickname() << "|" << std::endl;
+	std::cout << std::setw(10) << truncate(this->getFirstName()) << "|";
+	std::cout << std::setw(10) << truncate(this->getLastName()) << "|";
+	std::cout << std::setw(10) << truncate(this->getNickname()) << "|" << std::endl;
 }
 
 void Contact::showInfo()

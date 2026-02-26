@@ -17,9 +17,48 @@ std::string getInput(std::basic_istream<char> &inputStream, std::string prompt)
 		else if(!input.empty())
 			valid = true;
 		else
+		{
+			std::cout << input << std::endl;
 			std::cout << "Empty input is not allowed, try again." << std::endl;
+		}
 	}
 	return input;
+}
+
+void addOperation(Contact &contact, Phonebook &phonebook)
+{
+	std::cout << "FILL THE FOLLOWING INFORMATIONS:" << std::endl;
+	contact.setFirstName(getInput(std::cin, "First name: "));
+	contact.setLastName(getInput(std::cin, "Last name: "));
+	contact.setNickname(getInput(std::cin, "Nickname: "));
+	contact.setPhoneNumber(getInput(std::cin, "Phone number: "));
+	contact.setDarkestSecret(getInput(std::cin, "Darkest secret: "));
+	phonebook.addContact(contact);
+	std::cout << "\nContact added sucessfully!" << std::endl;
+}
+
+void searchOperation(Phonebook phonebook)
+{
+	if (phonebook.isEmpty())
+	{
+		std::cout << "Empty phonebook" << std::endl;
+		return ;
+	}
+	phonebook.showContacts();
+
+	int index;
+	do {
+		std::cout << "Enter a index of the contact: ";
+		std::cin >> index;
+		if (std::cin.fail())
+		{
+			std::cin.clear();
+			std::cin.ignore();
+			std::cout << "Not a number" << std::endl;
+		}
+	} while (std::cin.fail());
+	std::cin.ignore();
+	phonebook.displayContact(index);
 }
 
 int main(void)
@@ -30,55 +69,19 @@ int main(void)
 
 	std::cout << "WELCOME TO PHONEBOOK!" << std::endl;
 	std::cout << "Available commands: ADD, SEARCH, EXIT\n" << std::endl;
-	while (1)
-	{
+	do {
 		std::cout << "Choose the command: ";
 		command = getInput(std::cin, "");
-		for (int i = 0; i < (int)command.length(); i++)
-			command[i] = std::toupper(command[i]);
-		if (command == "EXIT")
-		{
-			std::cout << "Ending the program, bye bye!" << std::endl;
-			break ;
-		}
-		else if (command == "ADD")
-		{
-			std::cout << "FILL THE FOLLOWING INFORMATIONS:" << std::endl;
-			contact.setFirstName(getInput(std::cin, "First name: "));
-			contact.setLastName(getInput(std::cin, "Last name: "));
-			contact.setNickname(getInput(std::cin, "Nickname: "));
-			contact.setPhoneNumber(getInput(std::cin, "Phone number: "));
-			contact.setDarkestSecret(getInput(std::cin, "Darkest secret: "));
-			phonebook.addContact(contact);
-			std::cout << "\nContact added sucessfully!" << std::endl;
-		}
+		if (command == "ADD")
+			addOperation(contact, phonebook);
 		else if (command == "SEARCH")
 		{
-			std::cout << "Search Operation" << std::endl;
+			if (phonebook.isEmpty())
+				std::cout << "Empty phonebook" << std::endl;
+			else
+				searchOperation(phonebook);
 		}
-		else
-		{}
-	}
+	} while (command != "EXIT");
+	std::cout << "Ending the program, bye bye!" << std::endl;
 	return 0;
 }
-
-//int main(void)
-//{
-//	Phonebook phonebook;
-//	Contact contact;
-//	contact.setFirstName("Thawan");
-//	contact.setLastName("P.");
-//	contact.setNickname("Apelido");
-//	contact.setPhoneNumber("123456");
-//	contact.setDarkestSecret("nothin");
-//	phonebook.addContact(contact);
-//	Contact contact2;
-//	contact2.setFirstName("Thawan");
-//	contact2.setLastName("P.");
-//	contact2.setNickname("Apelido");
-//	contact2.setPhoneNumber("123456");
-//	contact2.setDarkestSecret("nothin");
-//	phonebook.addContact(contact2);
-//	phonebook.showContacts();
-//	return 0;
-//}

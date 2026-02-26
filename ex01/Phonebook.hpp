@@ -8,18 +8,21 @@
 
 class Phonebook
 {
-	public:
-		Phonebook(void);
+	private:
+		Contact contacts[PHONEBOOK_SIZE];
 		int count;
 		int oldestIndex;
 
+	public:
+		Phonebook(void);
+
 		bool isFull(void);
+		bool isEmpty(void);
 		void showContacts(void);
 		void displayContact(int index);
 		void addContact(Contact &newContact);
 		int getTotalContacts(void);
+		int getCount(void);
 
-	private:
-		Contact contacts[PHONEBOOK_SIZE];
 };
 #endif

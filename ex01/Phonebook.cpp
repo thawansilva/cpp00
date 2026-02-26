@@ -6,6 +6,16 @@ Phonebook::Phonebook(void)
 	this->oldestIndex = 0;
 }
 
+int Phonebook::getCount(void)
+{
+	return (this->count);
+}
+
+bool Phonebook::isEmpty(void)
+{
+	return (this->count == 0);
+}
+
 bool Phonebook::isFull(void)
 {
 	return (this->count == PHONEBOOK_SIZE - 1);
@@ -26,6 +36,10 @@ void Phonebook::addContact(Contact &newContact)
 
 void Phonebook::displayContact(int index)
 {
+	if (index < 0 || index > this->count) {
+		std::cout << "Invalid index or inexistent contact" << std::endl;
+		return ;
+	}
 	Contact contact = this->contacts[index];
 	contact.showInfo();
 }
@@ -48,8 +62,10 @@ void Phonebook::showContacts(void)
 		Contact contact = this->contacts[i];
 		std::cout << "|" << std::setw(10) << i << "|";
 		contact.showRowInfo();
-		std::cout << "|";
-		std::cout << std::setfill('-') << std::setw(44) << "|" << std::endl;
+		std::cout << "|" << std::setfill('-') << std::setw(11);
+		std::cout << "|" << std::setfill('-') << std::setw(11);
+		std::cout << "|" << std::setfill('-') << std::setw(11);
+		std::cout << "|" << std::setw(11) << "|" << std::endl;
 		std::cout << std::setfill(' ');
 	}
 }
