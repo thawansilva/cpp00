@@ -1,16 +1,25 @@
 #include "Phonebook.hpp"
 
-std::string getLine(std::basic_istream<char> &input)
+std::string getInput(std::basic_istream<char> &inputStream, std::string prompt)
 {
-	std::string command;
+	std::string input;
 	bool valid = false;
 
-	while (!valid) {
-		input >> command;
-		// Finish this part
-		return command;
+	while (!valid)
+	{
+		std::cout << prompt;
+		std::getline(inputStream, input);
+		if (std::cin.eof())
+		{
+			std::cout << "\nEOF detected, closing the program." << std::endl;
+			exit(0);
+		}
+		else if(!input.empty())
+			valid = true;
+		else
+			std::cout << "Empty input is not allowed, try again." << std::endl;
 	}
-	return "";
+	return input;
 }
 
 int main(void)
@@ -19,15 +28,36 @@ int main(void)
 	Contact contact;
 	std::string command;
 
-	std::cout << "Welcome to Phonebook!" << std::endl;
-	std::cout << "Avaliable commands: ADD, SEARCH, EXIT\n" << std::endl;
+	std::cout << "WELCOME TO PHONEBOOK!" << std::endl;
+	std::cout << "Available commands: ADD, SEARCH, EXIT\n" << std::endl;
 	while (1)
 	{
 		std::cout << "Choose the command: ";
-		command = getLine(std::cin);
-		if (command == "EXIT") {
+		command = getInput(std::cin, "");
+		for (int i = 0; i < (int)command.length(); i++)
+			command[i] = std::toupper(command[i]);
+		if (command == "EXIT")
+		{
+			std::cout << "Ending the program, bye bye!" << std::endl;
 			break ;
 		}
+		else if (command == "ADD")
+		{
+			std::cout << "FILL THE FOLLOWING INFORMATIONS:" << std::endl;
+			contact.setFirstName(getInput(std::cin, "First name: "));
+			contact.setLastName(getInput(std::cin, "Last name: "));
+			contact.setNickname(getInput(std::cin, "Nickname: "));
+			contact.setPhoneNumber(getInput(std::cin, "Phone number: "));
+			contact.setDarkestSecret(getInput(std::cin, "Darkest secret: "));
+			phonebook.addContact(contact);
+			std::cout << "\nContact added sucessfully!" << std::endl;
+		}
+		else if (command == "SEARCH")
+		{
+			std::cout << "Search Operation" << std::endl;
+		}
+		else
+		{}
 	}
 	return 0;
 }

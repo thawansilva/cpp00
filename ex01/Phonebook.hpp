@@ -3,6 +3,7 @@
 
 #include "Contact.hpp"
 #include <ostream>
+#include <cstdlib>
 #define PHONEBOOK_SIZE 8
 
 class Phonebook
