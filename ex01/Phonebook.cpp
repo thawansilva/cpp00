@@ -18,14 +18,14 @@ bool Phonebook::isEmpty(void)
 
 bool Phonebook::isFull(void)
 {
-	return (this->count == PHONEBOOK_SIZE - 1);
+	return (this->count == PHONEBOOK_SIZE);
 }
 
 void Phonebook::addContact(Contact &newContact)
 {
 	if (this->isFull()) {
 		this->contacts[this->oldestIndex] = newContact;
-		if (this->oldestIndex == 7)
+		if (this->oldestIndex == PHONEBOOK_SIZE - 1)
 			this->oldestIndex = -1;
 		this->oldestIndex++;
 		return ;
@@ -36,7 +36,7 @@ void Phonebook::addContact(Contact &newContact)
 
 void Phonebook::displayContact(int index)
 {
-	if (index < 0 || index > this->count) {
+	if (index < 0 || index >= this->count) {
 		std::cout << "Invalid index or inexistent contact" << std::endl;
 		return ;
 	}

@@ -25,9 +25,11 @@ std::string getInput(std::basic_istream<char> &inputStream, std::string prompt)
 	return input;
 }
 
-void addOperation(Contact &contact, Phonebook &phonebook)
+void addOperation(Phonebook &phonebook)
 {
 	std::cout << "FILL THE FOLLOWING INFORMATIONS:" << std::endl;
+
+	Contact contact;
 	contact.setFirstName(getInput(std::cin, "First name: "));
 	contact.setLastName(getInput(std::cin, "Last name: "));
 	contact.setNickname(getInput(std::cin, "Nickname: "));
@@ -47,33 +49,31 @@ void searchOperation(Phonebook phonebook)
 	phonebook.showContacts();
 
 	int index;
-	do {
-		std::cout << "Enter a index of the contact: ";
+	std::cout << "Enter the index of the contact: ";
+	std::cin >> index;
+	while (!std::cin)
+	{
+		std::cin.clear();
+		std::cin.ignore(10000, '\n');
+		std::cout << "Not a number, try again: ";
 		std::cin >> index;
-		if (std::cin.fail())
-		{
-			std::cin.clear();
-			std::cin.ignore();
-			std::cout << "Not a number" << std::endl;
-		}
-	} while (std::cin.fail());
-	std::cin.ignore();
+	}
+	std::cin.ignore(10000, '\n');
 	phonebook.displayContact(index);
 }
 
 int main(void)
 {
 	Phonebook phonebook;
-	Contact contact;
 	std::string command;
 
 	std::cout << "WELCOME TO PHONEBOOK!" << std::endl;
 	std::cout << "Available commands: ADD, SEARCH, EXIT\n" << std::endl;
 	do {
-		std::cout << "Choose the command: ";
+		std::cout << "Enter the command: ";
 		command = getInput(std::cin, "");
 		if (command == "ADD")
-			addOperation(contact, phonebook);
+			addOperation(phonebook);
 		else if (command == "SEARCH")
 		{
 			if (phonebook.isEmpty())
