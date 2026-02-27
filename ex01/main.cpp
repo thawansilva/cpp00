@@ -1,6 +1,6 @@
 #include "Phonebook.hpp"
 
-std::string getInput(std::basic_istream<char> &inputStream, std::string prompt)
+std::string getInput(std::string prompt)
 {
 	std::string input;
 	bool valid = false;
@@ -8,7 +8,7 @@ std::string getInput(std::basic_istream<char> &inputStream, std::string prompt)
 	while (!valid)
 	{
 		std::cout << prompt;
-		std::getline(inputStream, input);
+		std::getline(std::cin, input);
 		if (std::cin.eof())
 		{
 			std::cout << "\nEOF detected, closing the program." << std::endl;
@@ -30,11 +30,11 @@ void addOperation(Phonebook &phonebook)
 	std::cout << "FILL THE FOLLOWING INFORMATIONS:" << std::endl;
 
 	Contact contact;
-	contact.setFirstName(getInput(std::cin, "First name: "));
-	contact.setLastName(getInput(std::cin, "Last name: "));
-	contact.setNickname(getInput(std::cin, "Nickname: "));
-	contact.setPhoneNumber(getInput(std::cin, "Phone number: "));
-	contact.setDarkestSecret(getInput(std::cin, "Darkest secret: "));
+	contact.setFirstName(getInput("First name: "));
+	contact.setLastName(getInput("Last name: "));
+	contact.setNickname(getInput("Nickname: "));
+	contact.setPhoneNumber(getInput("Phone number: "));
+	contact.setDarkestSecret(getInput("Darkest secret: "));
 	phonebook.addContact(contact);
 	std::cout << "\nContact added sucessfully!" << std::endl;
 }
@@ -66,7 +66,7 @@ int main(void)
 	std::cout << "Available commands: ADD, SEARCH, EXIT\n" << std::endl;
 	do {
 		std::cout << "Enter the command: ";
-		command = getInput(std::cin, "");
+		command = getInput("");
 		if (command == "ADD")
 			addOperation(phonebook);
 		else if (command == "SEARCH")
