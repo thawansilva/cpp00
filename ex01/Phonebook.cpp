@@ -6,11 +6,6 @@ Phonebook::Phonebook(void)
 	this->oldestIndex = 0;
 }
 
-int Phonebook::getCount(void)
-{
-	return (this->count);
-}
-
 bool Phonebook::isEmpty(void)
 {
 	return (this->count == 0);

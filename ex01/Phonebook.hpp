@@ -21,8 +21,5 @@ class Phonebook
 		void showContacts(void);
 		void displayContact(int index);
 		void addContact(Contact &newContact);
-		int getTotalContacts(void);
-		int getCount(void);
-
 };
 #endif

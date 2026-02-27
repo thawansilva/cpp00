@@ -1,6 +1,6 @@
 #include "Contact.hpp"
 
-std::string truncate(std::string str)
+static std::string truncate(std::string str)
 {
 	if (str.length() > 10)
 		return str.substr(0,9) + ".";

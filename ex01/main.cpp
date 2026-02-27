@@ -41,11 +41,6 @@ void addOperation(Phonebook &phonebook)
 
 void searchOperation(Phonebook phonebook)
 {
-	if (phonebook.isEmpty())
-	{
-		std::cout << "Empty phonebook" << std::endl;
-		return ;
-	}
 	phonebook.showContacts();
 
 	int index;
