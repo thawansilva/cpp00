@@ -12,17 +12,16 @@ CPPFLAGS := $(addprefix -I, .)
 all: $(NAME) 
 
 $(NAME): $(OBJS)
-	$(CC) $(OBJS) -o $(NAME)
-	@touch $@
+	$(CC) $(OBJS) -o $@
 
 %.o: %.cpp
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
 clean:
-	rm $(OBJS) 
+	rm -f $(OBJS) 
 
 fclean: clean
-	rm $(NAME)
+	rm -f $(NAME)
 
 re: fclean all
 
