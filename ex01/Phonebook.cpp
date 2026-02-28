@@ -1,41 +1,53 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Phonebook.cpp                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: thaperei <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/02/28 10:59:42 by thaperei          #+#    #+#             */
+/*   Updated: 2026/02/28 10:59:44 by thaperei         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Phonebook.hpp"
 
 Phonebook::Phonebook(void)
 {
-	this->count = 0;
-	this->oldestIndex = 0;
+	count = 0;
+	oldestIndex = 0;
 }
 
 bool Phonebook::isEmpty(void)
 {
-	return (this->count == 0);
+	return (count == 0);
 }
 
 bool Phonebook::isFull(void)
 {
-	return (this->count == PHONEBOOK_SIZE);
+	return (count == PHONEBOOK_SIZE);
 }
 
 void Phonebook::addContact(Contact &newContact)
 {
-	if (this->isFull()) {
-		this->contacts[this->oldestIndex] = newContact;
-		if (this->oldestIndex == PHONEBOOK_SIZE - 1)
-			this->oldestIndex = -1;
-		this->oldestIndex++;
+	if (isFull()) {
+		contacts[oldestIndex] = newContact;
+		if (oldestIndex == PHONEBOOK_SIZE - 1)
+			oldestIndex = -1;
+		oldestIndex++;
 		return ;
 	}
-	this->contacts[this->count] = newContact;
-	this->count++;
+	contacts[count] = newContact;
+	count++;
 }
 
 void Phonebook::displayContact(int index)
 {
-	if (index < 0 || index >= this->count) {
+	if (index < 0 || index >= count) {
 		std::cout << "Invalid index or inexistent contact" << std::endl;
 		return ;
 	}
-	Contact contact = this->contacts[index];
+	Contact contact = contacts[index];
 	contact.showInfo();
 }
 
@@ -52,9 +64,9 @@ void Phonebook::showContacts(void)
 	std::cout << std::setfill(' ');
 
 	int i = -1;
-	while (++i < this->count)
+	while (++i < count)
 	{
-		Contact contact = this->contacts[i];
+		Contact contact = contacts[i];
 		std::cout << "|" << std::setw(10) << i << "|";
 		contact.showRowInfo();
 		std::cout << "|" << std::setfill('-') << std::setw(11);
