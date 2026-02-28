@@ -1,4 +1,4 @@
-NAME := GlobalBanksters
+NAME := globalbanksters
 
 # Source files and Objects
 SRC := Account.cpp tests.cpp
